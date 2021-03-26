@@ -4,7 +4,7 @@ import { Checkbox } from './checkbox';
 import '../styling/recipe-form.css';
 
 export const RecipeForm = ({addRecipe}) => {
-  const [input, setInput] = useState({name: "", ingredients: "", directions: "", categories: []});
+  const [data, setData] = useState({name: "", ingredients: "", directions: "", categories: [], itemId: ""});
 
 
   const sendData = async () => {
@@ -12,10 +12,10 @@ export const RecipeForm = ({addRecipe}) => {
       const API_BASE_URL = 'https://ji1u25w37c.execute-api.us-east-2.amazonaws.com/production/recipe'
       const payload = {
         itemId: `${Math.floor(Math.random() * (999999999 - 0 + 1)) + 999999999}`,
-        name: input.name,
-        ingredients: input.ingredients,
-        directions: input.directions,
-        categories: input.categories
+        name: data.name,
+        ingredients: data.ingredients,
+        directions: data.directions,
+        categories: data.categories
       }
       const config = {
         method: 'POST',
@@ -24,10 +24,9 @@ export const RecipeForm = ({addRecipe}) => {
       }  
       const request = await axios(config)
       console.log(request)
-
-      // const request = await axios.post('https://ji1u25w37c.execute-api.us-east-2.amazonaws.com/production/recipe', payload)
-
-      console.log(request)
+      const {Item} = request.data;
+      // setData(Item)
+      addRecipe(Item)
     } catch(err) {
       console.error(err)
     }
@@ -36,17 +35,16 @@ export const RecipeForm = ({addRecipe}) => {
 
   const handleCategories = (array) => {
     console.log(array)
-    setInput({...input, categories: array})
+    setData({...data, categories: array})
   }
 
   const handleChange = e => {
-    setInput({...input, [e.target.name]: e.target.value})
+    setData({...data, [e.target.name]: e.target.value})
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault(); 
-    addRecipe(input)
-    sendData()
+    sendData();
   }
 
   return (
@@ -54,12 +52,12 @@ export const RecipeForm = ({addRecipe}) => {
 
       <div className="row">
         <label htmlFor="name">Recipe Name</label>
-        <input type="text" name="name" value={input.name} placeholder="recipe name" onChange={handleChange}/>
+        <input type="text" name="name" value={data.name} placeholder="recipe name" onChange={handleChange}/>
       </div>
       
       <div className="row">
         <label htmlFor="ingredients">Ingredients and Amount</label>
-        <textarea type="text" name="ingredients" value={input.ingredients} placeholder="add ingredients and amount" onChange={handleChange}/>
+        <textarea type="text" name="ingredients" value={data.ingredients} placeholder="add ingredients and amount" onChange={handleChange}/>
       </div>
 
       <div>
@@ -68,7 +66,7 @@ export const RecipeForm = ({addRecipe}) => {
 
       <div className="row">
         <label htmlFor="directions">Directions</label>
-        <textarea type="textarea" name="directions" value={input.directions} placeholder="break directions into steps" onChange={handleChange}/>
+        <textarea type="textarea" name="directions" value={data.directions} placeholder="break directions into steps" onChange={handleChange}/>
       </div>
 
       <button type="submit">Create Recipe</button>

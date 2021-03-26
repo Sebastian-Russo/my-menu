@@ -2,25 +2,27 @@ import React, { useState } from 'react';
 // import Navbar from './navbar';
 import { RecipeForm } from './recipe-form';
 import { MenuCatItem } from './menu-cat-item';
+import { MenuCategory } from './menu-category';
+import items from '../recipes.json';
 import '../styling/App.css';
 
-// API endpoint 
-// https://ji1u25w37c.execute-api.us-east-2.amazonaws.com/production
 
 function App() {
-  const [recipe, setRecipe] = useState({name: "", ingredients: "", directions: "", categories: []})
+  const [item, setItem] = useState(items);
 
-  console.log(recipe)
+  console.log(item) 
 
-  const addRecipe = (val) => {
-    setRecipe(val)
+  const addRecipe = (newItem) => {
+    console.log(newItem)
+    setItem([...item, newItem])
   }
 
   return (
     <div className="App">
         {/* <Navbar /> */}
         <RecipeForm addRecipe={addRecipe}/>
-        <MenuCatItem item={recipe}/>
+        <MenuCategory items={item}/>
+        <MenuCatItem items={item}/>
     </div>
   );
 }

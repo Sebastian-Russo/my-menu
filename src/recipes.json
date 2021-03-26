@@ -1,0 +1,37 @@
+[
+  {
+    "itemId": 10001,
+    "name": "Grilled Cheese", 
+    "categories": ["lunch","dinner","snacks"],
+    "ingredients": "2 slices of bread, 2 slices of cheese, 1tbps of butter",
+    "directions": "Butter one side of bread slices, heat pan over medium heat, lay buttered bread side face down. Add cheese, then second bread slice. Fry each side till golden brown."
+  },
+  {
+    "itemId": 10002,
+    "name": "Cereal",
+    "categories": ["breakfast", "snacks"],
+    "ingredients": "2 cups of favorite cereal, 1 cup of milk",
+    "directions": "Pour cereal in bowl, then milk."
+  },
+  {
+    "itemId": 10003,
+    "name": "Ramen",
+    "categories":["lunch", "dinner"],
+    "ingredients": "6 eggs, 3 packs of ramen, 2 cups of white mushrooms, 1 yellow onion, 1 bunch of green onion, 1lb of sliced beef",
+    "directions": "Hard boil eggs, sautee onions and mushrooms together till onions are clear and mushrooms are soft. Add black pepper and salt to beef and panfry till brown. (Can replace beef with chicken or pork). Add 1 packet of ramen per serving, to boiling water. Follow directions on packet for length of time to boil. Once finished, add seasoning packet, mushroom and onions, meat, 1-2 hard boiled eggs (peeled and cut in half), and sprinkle fresh green onion over top."
+  },
+  {
+    "itemId": 10004,
+    "name": "Baked Chicken",
+    "categories":["lunch","dinner"],
+    "ingredients": "2lb of chicken (breast or thighs)",
+    "directions": "Cut of white stuff/fat off chicken to your preference. In a glass baking pan, pour a tbsp of olive oil, spread around pan. Place chicken in pan, rub chicken in oil. Sprinkle salt and black pepper over chicken pieces, flip and do to both sides. Bake on 450 degrees F. 15-20 minutes. Keep an eye on chicken, taken out as soon as white or almost white in middle, will continue to cook while cooking. That's how to keep it juicy, not dry"
+  },
+  {
+    "itemId": 10005,
+    "name": "Icecream",
+    "categories":["dessert"],
+    "ingredients": "Container of favorite flavor",
+    "directions": "Scoop into bowl"
+  }
+]
