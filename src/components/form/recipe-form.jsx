@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Checkbox } from './checkbox';
-import '../styling/recipe-form.css';
+import { NewCategory } from "./new-category";
+import '../../styling/recipe-form.css';
+
 
 export const RecipeForm = ({addRecipe}) => {
   const [data, setData] = useState({name: "", ingredients: "", directions: "", categories: [], itemId: ""});
+  const [toggleCheck, setToggleCheck] = useState(false);
 
 
   const sendData = async () => {
@@ -32,7 +35,6 @@ export const RecipeForm = ({addRecipe}) => {
     }
   }
 
-
   const handleCategories = (array) => {
     console.log(array)
     setData({...data, categories: array})
@@ -47,6 +49,23 @@ export const RecipeForm = ({addRecipe}) => {
     sendData();
   }
 
+  // addes category (user added) to list of categories in state
+  const addNewCategory = newCategory => {
+    console.log(newCategory)
+    setData({
+      ...data, 
+      categories: [...data.categories, newCategory]
+    })
+  }
+
+  // displays an textbox to add a new category 
+  let newCategory;
+  if (toggleCheck) {
+    newCategory = <NewCategory 
+    addNewCategory={addNewCategory} 
+    />;
+  }
+
   return (
     <form className="recipe-form" onSubmit={handleSubmit}>
 
@@ -58,6 +77,12 @@ export const RecipeForm = ({addRecipe}) => {
       <div className="row">
         <label htmlFor="ingredients">Ingredients and Amount</label>
         <textarea type="text" name="ingredients" value={data.ingredients} placeholder="add ingredients and amount" onChange={handleChange}/>
+      </div>
+
+      <div>
+        <input name="new" type="checkbox" onChange={() => setToggleCheck(!toggleCheck)}/>
+        <label htmlFor="new" className="new-category" >Add New Category</label>
+        {newCategory}
       </div>
 
       <div>
