@@ -1,0 +1,11 @@
+.navlink-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  margin: 4px;
+}
