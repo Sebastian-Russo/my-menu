@@ -9,7 +9,6 @@ export const RecipeForm = ({addRecipe}) => {
   const [data, setData] = useState({name: "", ingredients: "", directions: "", categories: [], itemId: ""});
   const [toggleCheck, setToggleCheck] = useState(false);
 
-
   const sendData = async () => {
     try {
       const API_BASE_URL = 'https://ji1u25w37c.execute-api.us-east-2.amazonaws.com/production/recipe'
@@ -28,7 +27,6 @@ export const RecipeForm = ({addRecipe}) => {
       const request = await axios(config)
       console.log(request)
       const {Item} = request.data;
-      // setData(Item)
       addRecipe(Item)
     } catch(err) {
       console.error(err)
