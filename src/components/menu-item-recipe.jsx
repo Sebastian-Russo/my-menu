@@ -4,15 +4,15 @@ import { useHistory, Redirect } from 'react-router-dom';
 import '../styling/menu-item-recipe.css';
 
 
-export const MenuItemRecipe = ({items, dish, reGrabData}) => {
+export const MenuItemRecipe = ({items, dish, reGrabData, getSingleRecipe}) => {
   const history = useHistory();
   const [redirectEdit, setRedirectEdit] = useState(false);
   const [redirectDelete, setRedirectDelete] = useState(false);
   if (!dish) return <div></div>; // REFRESH ON THIS PAGE LOSES PROPS - set local storage to fix ? 
 
   const handleEdit = itemId => {
-    console.log(itemId)
     setRedirectEdit(!redirectEdit)
+    getSingleRecipe(itemId)
   }
 
   const handleDelete = itemId => {

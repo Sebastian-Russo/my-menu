@@ -12,6 +12,7 @@ import '../styling/App.css';
 function App() {
   const [item, setItem] = useState(items);
   const [dish, setDish] = useState("");
+  const [editItem, setEditItem] = useState("");
   
   // GET method 
   const getData = async () => {
@@ -37,6 +38,10 @@ function App() {
   const reGrabData = () => {
     console.log('clicked delete')
     getData()
+  }
+
+  const getSingleRecipe = itemId => {
+    setEditItem(itemId)
   }
 
   const addRecipe = (newItem) => {
@@ -69,7 +74,8 @@ function App() {
                 <MenuItemRecipe {...props}
                 dish={dish}
                 items={item}
-                reGrabData={reGrabData} />
+                reGrabData={reGrabData}
+                getSingleRecipe={getSingleRecipe} />
               }
             />
               <Route 
@@ -77,7 +83,8 @@ function App() {
                 path="/recipe"
                 render={props =>
                   <RecipeForm {...props}
-                  addRecipe={addRecipe}/>
+                  addRecipe={addRecipe}
+                  editItem={editItem}/>
                 }
               />
               <Route exact path="/" render={() => (<Redirect to="/menu" />)} />

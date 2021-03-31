@@ -1,17 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Checkbox } from './checkbox';
 import { NewCategory } from "./new-category";
 import '../../styling/recipe-form.css';
 
 
-export const RecipeForm = ({addRecipe}) => {
+export const RecipeForm = ({addRecipe, editItem}) => {
   const [data, setData] = useState({name: "", ingredients: "", directions: "", categories: [], itemId: ""});
   const [toggleCheck, setToggleCheck] = useState(false);
 
+  const API_BASE_URL = 'https://ji1u25w37c.execute-api.us-east-2.amazonaws.com/production/recipe';
+  
+  // type error: cannot read property 'itemId' of null"
+  const getSingleItemData = async () => {
+    console.log(editItem)
+    try {
+      const params = {
+        itemId: editItem
+      }
+      const request = await axios.get(API_BASE_URL, params);
+      
+      console.log(request)
+      
+    } catch(err) {
+      console.error(err)
+    }
+  }
+  
+  if (editItem) {
+    getSingleItemData()
+  }
+  
+
   const sendData = async () => {
     try {
-      const API_BASE_URL = 'https://ji1u25w37c.execute-api.us-east-2.amazonaws.com/production/recipe'
+      // const API_BASE_URL = 'https://ji1u25w37c.execute-api.us-east-2.amazonaws.com/production/recipe'
       const payload = {
         itemId: `${Math.floor(Math.random() * (999999999 - 0 + 1)) + 999999999}`,
         name: data.name,
